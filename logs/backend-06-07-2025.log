@@ -1,0 +1,5 @@
+[06-07-2025 22:15:04] info: 🚀 Server is listening on port 5000
+[06-07-2025 22:15:25] error: ❌ Error connecting to database: database "weatherApp" does not exist
+[06-07-2025 22:15:39] error: ❌ Error connecting to database: database "weatherApp" does not exist
+[06-07-2025 22:19:28] info: 🚀 Server is listening on port 5000
+[06-07-2025 22:20:05] error: ❌ Error connecting to database: database "weatherapp" does not exist
