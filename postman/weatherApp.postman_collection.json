@@ -1,0 +1,521 @@
+{
+	"info": {
+		"_postman_id": "19925ae0-f9a0-4208-b40d-d00fc8e07fee",
+		"name": "weatherApp",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "45269414",
+		"_collection_link": "https://jacob-8164460.postman.co/workspace/WeatherApp~ee3abb8c-dfa6-4e87-83e0-244869baa3f4/collection/45269414-19925ae0-f9a0-4208-b40d-d00fc8e07fee?action=share&source=collection_link&creator=45269414"
+	},
+	"item": [
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"first_name\": \"Jacob\",\r\n  \"last_name\": \"Asare\",\r\n  \"email\": \"jacobasare31@gmail.com\",\r\n  \"password\": \"hello123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:5000/api/auth/register"
+			},
+			"response": [
+				{
+					"name": "200",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"first_name\": \"Jacob\",\r\n  \"last_name\": \"Asare\",\r\n  \"email\": \"jacobasare31@gmail.com\",\r\n  \"password\": \"hello123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:5000/api/auth/register"
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "JSON",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express",
+							"type": "text"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8",
+							"type": "text"
+						},
+						{
+							"key": "Content-Length",
+							"value": "99",
+							"type": "text"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"63-KJ6J1Cnpx63v7nedyBHcfI7fj3M\"",
+							"type": "text"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 08 Jul 2025 17:43:38 GMT",
+							"type": "text"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive",
+							"type": "text"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"User registered\",\n    \"user\": {\n        \"id\": 1,\n        \"first_name\": \"Jacob\",\n        \"email\": \"jacobasare31@gmail.com\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"jacobasare31@gmail.com\",\r\n  \"password\": \"hello123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:5000/api/auth/login"
+			},
+			"response": [
+				{
+					"name": "200",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"jacobasare31@gmail.com\",\r\n  \"password\": \"hello123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:5000/api/auth/login"
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "JSON",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express",
+							"type": "text"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8",
+							"type": "text"
+						},
+						{
+							"key": "Content-Length",
+							"value": "79",
+							"type": "text"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"4f-B/Y1HKSkqI82LrGEcYkAi8o8lWY\"",
+							"type": "text"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 08 Jul 2025 17:51:26 GMT",
+							"type": "text"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive",
+							"type": "text"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Login successful\",\n    \"user\": {\n        \"id\": 1,\n        \"email\": \"jacobasare31@gmail.com\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Search city (Autocomplete)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/cities/autocomplete?name=rom",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"cities",
+						"autocomplete"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "rom"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/cities/autocomplete?name=rom",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"cities",
+								"autocomplete"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "rom"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "JSON",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express",
+							"type": "text"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8",
+							"type": "text"
+						},
+						{
+							"key": "Content-Length",
+							"value": "652",
+							"type": "text"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"28c-vk189yqy+/3L3rFTeiSdZxOsN9k\"",
+							"type": "text"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 08 Jul 2025 18:29:20 GMT",
+							"type": "text"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive",
+							"type": "text"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"name\": \"Rome\",\n        \"region\": \"Lazio\",\n        \"country\": \"IT\",\n        \"lat\": 41.8933203,\n        \"lon\": 12.4829321,\n        \"label\": \"Rome, Lazio, IT\"\n    },\n    {\n        \"name\": \"Rom\",\n        \"region\": \"Nouvelle-Aquitaine\",\n        \"country\": \"FR\",\n        \"lat\": 46.2928765,\n        \"lon\": 0.1152415,\n        \"label\": \"Rom, Nouvelle-Aquitaine, FR\"\n    },\n    {\n        \"name\": \"Rom\",\n        \"region\": \"Mecklenburg-Vorpommern\",\n        \"country\": \"DE\",\n        \"lat\": 53.4444081,\n        \"lon\": 11.9494091,\n        \"label\": \"Rom, Mecklenburg-Vorpommern, DE\"\n    },\n    {\n        \"name\": \"Rømø\",\n        \"region\": \"Region of Southern Denmark\",\n        \"country\": \"DK\",\n        \"lat\": 55.13513295,\n        \"lon\": 8.513828970148085,\n        \"label\": \"Rømø, Region of Southern Denmark, DK\"\n    },\n    {\n        \"name\": \"Rom\",\n        \"region\": \"\",\n        \"country\": \"NO\",\n        \"lat\": 59.054269250000004,\n        \"lon\": 11.081357018922894,\n        \"label\": \"Rom, NO\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Add city to user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"userId\": 1,\r\n  \"name\": \"Brescia\",\r\n  \"region\": \"Lombardia\",\r\n  \"country\": \"IT\",\r\n  \"lat\": 41.8933,\r\n  \"lon\": 12.4829\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:5000/api/cities/add"
+			},
+			"response": [
+				{
+					"name": "200",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userId\": 1,\r\n  \"name\": \"Rome\",\r\n  \"region\": \"Lazio\",\r\n  \"country\": \"IT\",\r\n  \"lat\": 41.8933,\r\n  \"lon\": 12.4829\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:5000/api/cities/add"
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "JSON",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express",
+							"type": "text"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8",
+							"type": "text"
+						},
+						{
+							"key": "Content-Length",
+							"value": "36",
+							"type": "text"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"24-D++pqXJUJx7QAXiGNMeIcQ0XDOk\"",
+							"type": "text"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 08 Jul 2025 18:58:07 GMT",
+							"type": "text"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive",
+							"type": "text"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"✅ City added to user\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get user cities",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:5000/api/cities/user/1"
+			},
+			"response": [
+				{
+					"name": "200",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:5000/api/cities/user/1"
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "JSON",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express",
+							"type": "text"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8",
+							"type": "text"
+						},
+						{
+							"key": "Content-Length",
+							"value": "92",
+							"type": "text"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"5c-19tqeSU3gam9KRuvnyFF4/APCTQ\"",
+							"type": "text"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 08 Jul 2025 19:14:21 GMT",
+							"type": "text"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive",
+							"type": "text"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 1,\n        \"name\": \"Rome\",\n        \"region\": \"Lazio\",\n        \"country\": \"IT\",\n        \"lat\": \"41.893300\",\n        \"lon\": \"12.482900\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Remove city",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "http://localhost:5000/api/cities/user/1/city/2"
+			},
+			"response": [
+				{
+					"name": "200",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:5000/api/cities/user/1/city/2"
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "JSON",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express",
+							"type": "text"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8",
+							"type": "text"
+						},
+						{
+							"key": "Content-Length",
+							"value": "40",
+							"type": "text"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"28-heSOlxcfgT4GEoeS7IrhA8wZ9EQ\"",
+							"type": "text"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 08 Jul 2025 19:51:59 GMT",
+							"type": "text"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive",
+							"type": "text"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"✅ City removed from user\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Weather (User Cities)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:5000/api/cities/user/1/weather"
+			},
+			"response": [
+				{
+					"name": "200",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:5000/api/cities/user/1/weather"
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "JSON",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express",
+							"type": "text"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8",
+							"type": "text"
+						},
+						{
+							"key": "Content-Length",
+							"value": "262",
+							"type": "text"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"106-t6iLvWGSn2NSg0wl/gsDzkxsJjc\"",
+							"type": "text"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 08 Jul 2025 20:04:50 GMT",
+							"type": "text"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive",
+							"type": "text"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"name\": \"Rome\",\n        \"country\": \"IT\",\n        \"lat\": \"41.893300\",\n        \"lon\": \"12.482900\",\n        \"weather\": \"few clouds\",\n        \"temperature\": 23.08,\n        \"feels_like\": 23.01\n    },\n    {\n        \"name\": \"Brescia\",\n        \"country\": \"IT\",\n        \"lat\": \"41.893300\",\n        \"lon\": \"12.482900\",\n        \"weather\": \"few clouds\",\n        \"temperature\": 23.08,\n        \"feels_like\": 23.01\n    }\n]"
+				}
+			]
+		}
+	]
+}

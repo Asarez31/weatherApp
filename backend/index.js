@@ -3,6 +3,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import logger from './logger.js';
 import authRoutes from './routes/auth.js';
+import cityRoutes from './routes/cities.js';
 
 dotenv.config();
 
@@ -14,6 +15,7 @@ app.use(express.json()); // To parse JSON request bodies
 
 // Route Mounting
 app.use('/api/auth', authRoutes);
+app.use('/api/cities', cityRoutes);
 
 // Default route
 app.get('/', (req, res) => {
