@@ -89,7 +89,67 @@
 			"name": "Login",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Cache-Control",
+						"value": "no-cache",
+						"name": "cache-control",
+						"type": "text"
+					},
+					{
+						"key": "Postman-Token",
+						"value": "<calculated when request is sent>",
+						"name": "postman-token",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"name": "content-type",
+						"type": "text"
+					},
+					{
+						"key": "Content-Length",
+						"value": "<calculated when request is sent>",
+						"name": "content-length",
+						"type": "text"
+					},
+					{
+						"key": "Host",
+						"value": "<calculated when request is sent>",
+						"name": "host",
+						"type": "text"
+					},
+					{
+						"key": "User-Agent",
+						"value": "PostmanRuntime/7.39.1",
+						"name": "user-agent",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "*/*",
+						"name": "accept",
+						"type": "text"
+					},
+					{
+						"key": "Accept-Encoding",
+						"value": "gzip, deflate, br",
+						"name": "accept-encoding",
+						"type": "text"
+					},
+					{
+						"key": "Connection",
+						"value": "keep-alive",
+						"name": "connection",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
 					"raw": "{\r\n  \"email\": \"jacobasare31@gmail.com\",\r\n  \"password\": \"hello123\"\r\n}",
@@ -106,7 +166,13 @@
 					"name": "200",
 					"originalRequest": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n  \"email\": \"jacobasare31@gmail.com\",\r\n  \"password\": \"hello123\"\r\n}",
@@ -134,17 +200,17 @@
 						},
 						{
 							"key": "Content-Length",
-							"value": "79",
+							"value": "312",
 							"type": "text"
 						},
 						{
 							"key": "ETag",
-							"value": "W/\"4f-B/Y1HKSkqI82LrGEcYkAi8o8lWY\"",
+							"value": "W/\"138-zvbK15rIiuSdLUTmbm76bFgiei4\"",
 							"type": "text"
 						},
 						{
 							"key": "Date",
-							"value": "Tue, 08 Jul 2025 17:51:26 GMT",
+							"value": "Tue, 08 Jul 2025 22:52:41 GMT",
 							"type": "text"
 						},
 						{
@@ -159,7 +225,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"message\": \"Login successful\",\n    \"user\": {\n        \"id\": 1,\n        \"email\": \"jacobasare31@gmail.com\"\n    }\n}"
+					"body": "{\n    \"message\": \"Login successful\",\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJqYWNvYmFzYXJlMzFAZ21haWwuY29tIiwiaWF0IjoxNzUyMDE1MTYxLCJleHAiOjE3NTIwMTg3NjF9.RS7oryAgcf-8gt9GYLsn31seI8EJKCOxUtLIDqf2lxs\",\n    \"user\": {\n        \"id\": 1,\n        \"email\": \"jacobasare31@gmail.com\",\n        \"first_name\": \"Jacob\",\n        \"last_name\": \"Asare\"\n    }\n}"
 				}
 			]
 		},
@@ -516,6 +582,63 @@
 					"body": "[\n    {\n        \"name\": \"Rome\",\n        \"country\": \"IT\",\n        \"lat\": \"41.893300\",\n        \"lon\": \"12.482900\",\n        \"weather\": \"few clouds\",\n        \"temperature\": 23.08,\n        \"feels_like\": 23.01\n    },\n    {\n        \"name\": \"Brescia\",\n        \"country\": \"IT\",\n        \"lat\": \"41.893300\",\n        \"lon\": \"12.482900\",\n        \"weather\": \"few clouds\",\n        \"temperature\": 23.08,\n        \"feels_like\": 23.01\n    }\n]"
 				}
 			]
+		},
+		{
+			"name": "Protected",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Cache-Control",
+						"value": "no-cache",
+						"name": "cache-control",
+						"type": "text"
+					},
+					{
+						"key": "Postman-Token",
+						"value": "<calculated when request is sent>",
+						"name": "postman-token",
+						"type": "text"
+					},
+					{
+						"key": "Host",
+						"value": "<calculated when request is sent>",
+						"name": "host",
+						"type": "text"
+					},
+					{
+						"key": "User-Agent",
+						"value": "PostmanRuntime/7.39.1",
+						"name": "user-agent",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "*/*",
+						"name": "accept",
+						"type": "text"
+					},
+					{
+						"key": "Accept-Encoding",
+						"value": "gzip, deflate, br",
+						"name": "accept-encoding",
+						"type": "text"
+					},
+					{
+						"key": "Connection",
+						"value": "keep-alive",
+						"name": "connection",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJqYWNvYmFzYXJlMzFAZ21haWwuY29tIiwiaWF0IjoxNzUyMDE1MTYxLCJleHAiOjE3NTIwMTg3NjF9.RS7oryAgcf-8gt9GYLsn31seI8EJKCOxUtLIDqf2lxs",
+						"type": "text"
+					}
+				],
+				"url": "http://localhost:5000/api/protected"
+			},
+			"response": []
 		}
 	]
 }
