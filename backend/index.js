@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import logger from './logger.js';
 import authRoutes from './routes/auth.js';
 import cityRoutes from './routes/cities.js';
+import { authenticateToken } from './middleware/auth.js';
 
 dotenv.config();
 
@@ -16,6 +17,10 @@ app.use(express.json()); // To parse JSON request bodies
 // Route Mounting
 app.use('/api/auth', authRoutes);
 app.use('/api/cities', cityRoutes);
+app.get('/api/protected', authenticateToken, (req, res) => {
+  if (!req.user) return res.status(401).json({ error: 'User info missing' });
+  res.json({ message: `Hello user ${req.user.id}` });
+});
 
 // Default route
 app.get('/', (req, res) => {

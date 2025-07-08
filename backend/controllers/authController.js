@@ -1,10 +1,12 @@
 // controllers/authController.js
 
-import bcrypt from 'bcrypt';
-import pool from '../db.js';
-import logger from '../logger.js';
+import bcrypt from "bcrypt";
+import pool from "../db.js";
+import logger from "../logger.js";
+import jwt from "jsonwebtoken";
 
 const saltRounds = 10;
+const JWT_SECRET = process.env.JWT_SECRET || "your_secret_key";
 
 export const register = async (req, res) => {
   const { first_name, last_name, email, password } = req.body;
@@ -19,13 +21,13 @@ export const register = async (req, res) => {
     );
 
     logger.info(`🆕 User registered: ${email}`);
-    res.status(201).json({ message: 'User registered', user: result.rows[0] });
+    res.status(201).json({ message: "User registered", user: result.rows[0] });
   } catch (err) {
     logger.error(`Registration error: ${err}`);
-    if (err.code === '23505') {
-      res.status(409).json({ error: 'Email already registered' });
+    if (err.code === "23505") {
+      res.status(409).json({ error: "Email already registered" });
     } else {
-      res.status(500).json({ error: 'Registration failed' });
+      res.status(500).json({ error: "Registration failed" });
     }
   }
 };
@@ -48,8 +50,20 @@ export const login = async (req, res) => {
     // Update last_seen
     await pool.query(`UPDATE users SET last_seen = NOW() WHERE id = $1`, [user.id]);
 
+    // 🔐 Generate token
+    const token = jwt.sign(
+      { id: user.id, email: user.email },
+      JWT_SECRET,
+      { expiresIn: '1h' } // token expires in 1 hour
+    );
+
     logger.info(`✅ User logged in: ${email}`);
-    res.json({ message: 'Login successful', user: { id: user.id, email: user.email } });
+    res.json({
+      message: 'Login successful',
+      token,
+      user: { id: user.id, email: user.email }
+    });
+
   } catch (err) {
     logger.error(`Login error: ${err}`);
     res.status(500).json({ error: 'Login failed' });
