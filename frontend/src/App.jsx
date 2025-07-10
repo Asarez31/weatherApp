@@ -1,22 +1,42 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Register from './pages/Register';
-import Login from './pages/Login';
-import Home from './pages/Home';
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import Home from "./pages/Home";
+import SignOut from "./components/SignOut.jsx";
+import { useContext } from "react";
+import { AuthContext } from "./context/AuthContext.jsx";
 
-function App() {
+function AppRoutes() {
+  const { isLoggedIn } = useContext(AuthContext);
+
   return (
-    <Router>
-      <Routes>
-        <Route path="/home" element={<Home />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/" element={<Login />} />
-      </Routes>
-    </Router>
+    <Routes>
+      <Route
+        path="/"
+        element={isLoggedIn ? <Navigate to="/home" /> : <Navigate to="/login" />}
+      />
+      <Route
+        path="/login"
+        element={isLoggedIn ? <Navigate to="/home" /> : <Login />}
+      />
+      <Route
+        path="/register"
+        element={isLoggedIn ? <Navigate to="/home" /> : <Register />}
+      />
+      <Route
+        path="/home"
+        element={isLoggedIn ? <Home /> : <Navigate to="/login" />}
+      />
+      <Route path="/signout" element={<SignOut />} />
+      <Route path="*" element={<h2>Page Not Found</h2>} />
+    </Routes>
   );
 }
 
-export default App
+export default function App() {
+  return (
+    <BrowserRouter>
+      <AppRoutes />
+    </BrowserRouter>
+  );
+}

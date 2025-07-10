@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import logger from './logger.js';
 import authRoutes from './routes/auth.js';
 import cityRoutes from './routes/cities.js';
+import cors from 'cors';
 import { authenticateToken } from './middleware/auth.js';
 
 dotenv.config();
@@ -11,8 +12,18 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+//CORS Configuration
+//Allow all origins (not recommended for production)
+app.use(cors());
+
+/*app.use(cors({
+  origin: 'http://localhost:5173', // your frontend URL & port
+  credentials: true, // if you need cookies/auth headers
+}));*/
+
 // Middleware
 app.use(express.json()); // To parse JSON request bodies
+
 
 // Route Mounting
 app.use('/api/auth', authRoutes);

@@ -20,8 +20,23 @@ export const register = async (req, res) => {
       [first_name, last_name, email, hashedPassword]
     );
 
+    const user = result.rows[0];
+
+    // Generate token after registration
+    const token = jwt.sign(
+      { id: user.id, email: user.email },
+      JWT_SECRET,
+      { expiresIn: '1h' }
+    );
+
     logger.info(`🆕 User registered: ${email}`);
-    res.status(201).json({ message: "User registered", user: result.rows[0] });
+
+    // Send token with user info
+    res.status(201).json({ 
+      message: "User registered", 
+      token, 
+      user 
+    });
   } catch (err) {
     logger.error(`Registration error: ${err}`);
     if (err.code === "23505") {
