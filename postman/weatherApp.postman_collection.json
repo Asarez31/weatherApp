@@ -14,7 +14,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"first_name\": \"Jacob\",\r\n  \"last_name\": \"Asare\",\r\n  \"email\": \"jacobasare31@gmail.com\",\r\n  \"password\": \"hello123\"\r\n}",
+					"raw": "{\r\n  \"first_name\": \"Jacob121\",\r\n  \"last_name\": \"Asare\",\r\n  \"email\": \"jacobasar122@gmail.com\",\r\n  \"password\": \"hello1234\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -31,7 +31,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"first_name\": \"Jacob\",\r\n  \"last_name\": \"Asare\",\r\n  \"email\": \"jacobasare31@gmail.com\",\r\n  \"password\": \"hello123\"\r\n}",
+							"raw": "{\r\n  \"first_name\": \"Jacob121\",\r\n  \"last_name\": \"Asare\",\r\n  \"email\": \"jacobasar122@gmail.com\",\r\n  \"password\": \"hello1234\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -50,23 +50,28 @@
 							"type": "text"
 						},
 						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*",
+							"type": "text"
+						},
+						{
 							"key": "Content-Type",
 							"value": "application/json; charset=utf-8",
 							"type": "text"
 						},
 						{
 							"key": "Content-Length",
-							"value": "99",
+							"value": "297",
 							"type": "text"
 						},
 						{
 							"key": "ETag",
-							"value": "W/\"63-KJ6J1Cnpx63v7nedyBHcfI7fj3M\"",
+							"value": "W/\"129-N+nXw6uWThJlpNbzRktUuXAwdO0\"",
 							"type": "text"
 						},
 						{
 							"key": "Date",
-							"value": "Tue, 08 Jul 2025 17:43:38 GMT",
+							"value": "Thu, 10 Jul 2025 22:23:58 GMT",
 							"type": "text"
 						},
 						{
@@ -81,7 +86,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"message\": \"User registered\",\n    \"user\": {\n        \"id\": 1,\n        \"first_name\": \"Jacob\",\n        \"email\": \"jacobasare31@gmail.com\"\n    }\n}"
+					"body": "{\n    \"message\": \"User registered\",\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQsImVtYWlsIjoiamFjb2Jhc2FyMTIyQGdtYWlsLmNvbSIsImlhdCI6MTc1MjE4NjIzOCwiZXhwIjoxNzUyMTg5ODM4fQ.Ci6tmD6CIySV781_CPNnvXuwU-wpvUu-MFe3-AX1_cI\",\n    \"user\": {\n        \"id\": 14,\n        \"first_name\": \"Jacob121\",\n        \"email\": \"jacobasar122@gmail.com\"\n    }\n}"
 				}
 			]
 		},
