@@ -1,9 +1,9 @@
-// controllers/citiesController.js
 import axios from "axios";
 import pool from "../db.js";
 
+// ✅ GET /cities/autocomplete
 export const autocompleteCities = async (req, res) => {
-  const query = req.query.name;
+  const query = req.query.name.toLowerCase().trim();
 
   if (!query || query.length < 2) {
     return res
@@ -43,29 +43,27 @@ export const autocompleteCities = async (req, res) => {
   }
 };
 
+// ✅ POST /cities/add
 export const addCityToUser = async (req, res) => {
-  const { userId, name, region, country, lat, lon } = req.body;
+  const userId = req.user.id;
+  const { name, region, country, lat, lon } = req.body;
 
-  if (!userId || !name || !country || lat == null || lon == null) {
+  if (!name || !country || lat == null || lon == null) {
     return res.status(400).json({ error: "Missing required fields" });
   }
 
   try {
-    // 1. Insert city if it doesn't exist
     const cityResult = await pool.query(
       `INSERT INTO cities (name, region, country, lat, lon)
-      VALUES ($1, $2, $3, $4, $5)
-      ON CONFLICT (name, region, country, lat, lon)
-      DO UPDATE SET name = EXCLUDED.name
-      RETURNING id`,
+       VALUES ($1, $2, $3, $4, $5)
+       ON CONFLICT (name, region, country, lat, lon)
+       DO UPDATE SET name = EXCLUDED.name
+       RETURNING id`,
       [name, region, country, lat, lon]
     );
 
     const cityId = cityResult.rows[0].id;
-    console.log('Inserted or found city ID:', cityResult.rows[0]);
 
-
-    // 2. Link city to user
     await pool.query(
       `INSERT INTO user_cities (user_id, city_id)
        VALUES ($1, $2)
@@ -80,8 +78,9 @@ export const addCityToUser = async (req, res) => {
   }
 };
 
+// ✅ GET /cities/my
 export const getUserCities = async (req, res) => {
-  const { userId } = req.params;
+  const userId = req.user.id;
 
   try {
     const result = await pool.query(
@@ -99,8 +98,10 @@ export const getUserCities = async (req, res) => {
   }
 };
 
+// ✅ DELETE /cities/city/:cityId
 export const removeCityFromUser = async (req, res) => {
-  const { userId, cityId } = req.params;
+  const userId = req.user.id;
+  const { cityId } = req.params;
 
   try {
     const result = await pool.query(
@@ -120,13 +121,13 @@ export const removeCityFromUser = async (req, res) => {
   }
 };
 
+// ✅ GET /cities/weather
 export const getWeatherForUserCities = async (req, res) => {
-  const { userId } = req.params;
+  const userId = req.user.id;
 
   try {
-    // 1. Fetch all user's cities
     const cityResult = await pool.query(
-      `SELECT c.name, c.country, c.lat, c.lon
+      `SELECT c.id, c.name, c.country, c.region, c.lat, c.lon
        FROM user_cities uc
        JOIN cities c ON uc.city_id = c.id
        WHERE uc.user_id = $1`,
@@ -139,14 +140,15 @@ export const getWeatherForUserCities = async (req, res) => {
       return res.status(404).json({ error: 'User has no saved cities' });
     }
 
-    // 2. For each city, fetch weather data
     const weatherResponses = await Promise.all(
       cities.map(async (city) => {
         const url = `https://api.openweathermap.org/data/2.5/weather?lat=${city.lat}&lon=${city.lon}&appid=${process.env.OPENWEATHER_API_KEY}&units=metric`;
 
         const weather = await axios.get(url);
         return {
+          id: city.id,
           name: city.name,
+          region: city.region,
           country: city.country,
           lat: city.lat,
           lon: city.lon,

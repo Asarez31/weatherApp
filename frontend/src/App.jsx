@@ -1,10 +1,11 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import Home from "./pages/Home";
+import Home from "./pages/Home.jsx";
 import SignOut from "./components/SignOut.jsx";
 import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext.jsx";
+import TestIcon from "./TestIcon";
 
 function AppRoutes() {
   const { isLoggedIn } = useContext(AuthContext);
@@ -13,7 +14,9 @@ function AppRoutes() {
     <Routes>
       <Route
         path="/"
-        element={isLoggedIn ? <Navigate to="/home" /> : <Navigate to="/login" />}
+        element={
+          isLoggedIn ? <Navigate to="/home" /> : <Navigate to="/login" />
+        }
       />
       <Route
         path="/login"
@@ -35,8 +38,13 @@ function AppRoutes() {
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <AppRoutes />
-    </BrowserRouter>
+    <>
+      <BrowserRouter>
+        <AppRoutes />
+      </BrowserRouter>
+      <div className="min-h-screen flex items-center justify-center bg-gray-100">
+        <TestIcon />
+      </div>
+    </>
   );
 }

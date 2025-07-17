@@ -1,10 +1,10 @@
 import axios from "axios";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext.jsx";
 
 export default function Login() {
-  const { login } = useContext(AuthContext);
+  const { login, isLoggedIn } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -25,7 +25,7 @@ export default function Login() {
       const token = response.data.token;
       if (token) {
         login(token);
-        navigate("/home");
+        // Remove navigate from here
       } else {
         setError("Invalid login response");
       }
@@ -39,6 +39,13 @@ export default function Login() {
       setLoading(false);
     }
   };
+
+  // Navigate when isLoggedIn changes to true
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate("/home");
+    }
+  }, [isLoggedIn, navigate]);
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">

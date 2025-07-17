@@ -1,3 +1,5 @@
-# Logs
+# Ignore logs folders in root and backend
 /logs/
-*.log
+/backend/logs/
+/*.log
+logs/.5074aa01136e8e5e997a2a7536dfe1e344954323-audit.json
