@@ -24,18 +24,6 @@ export default function CityCard({ city, onRemove }) {
           <Thermometer className="w-5 h-5 text-blue-500" />
           <span>Temperature: {city.temperature}°C (Feels like {city.feels_like}°C)</span>
         </div>
-        <div className="flex items-center gap-2">
-          <Droplet className="w-5 h-5 text-cyan-600" />
-          <span>Humidity: {city.humidity}%</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <Wind className="w-5 h-5 text-gray-600" />
-          <span>Wind Speed: {city.wind_speed} km/h</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <Eye className="w-5 h-5 text-violet-600" />
-          <span>Visibility: {city.visibility} km</span>
-        </div>
       </div>
     </div>
   );
