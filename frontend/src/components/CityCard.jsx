@@ -1,28 +1,18 @@
-// src/components/CityCard.jsx
-import { Thermometer, Droplet, Wind, Eye, X } from "lucide-react";
+import DeviceThermostatOutlinedIcon from "@mui/icons-material/DeviceThermostatOutlined";
+import HouseOutlinedIcon from "@mui/icons-material/HouseOutlined";
 
-export default function CityCard({ city, onRemove }) {
+export default function CityCard({ city }) {
   return (
-    <div className="bg-white rounded-lg shadow-md p-6 mb-6 w-full max-w-md mx-auto flex flex-col gap-4 relative">
-      <button
-        onClick={() => onRemove(city)}
-        aria-label={`Remove ${city.name}`}
-        title="Remove city"
-        className="absolute top-3 right-3 text-red-500 hover:text-red-700 focus:outline-none"
-      >
-        <X size={20} />
-      </button>
-
-      <h2 className="text-2xl font-bold text-center">
-        {city.name}, {city.country}
+    <div className="space-y-4 text-gray-800">
+      <h2 className="text-2xl font-bold text-blue-800">
+        <HouseOutlinedIcon /> {city.name}, {city.country}
       </h2>
-
-      <p className="text-center text-gray-700 capitalize text-lg">{city.weather}</p>
-
-      <div className="flex flex-col gap-3 text-gray-800 text-sm">
+      <div className="flex flex-col gap-3 text-sm">
         <div className="flex items-center gap-2">
-          <Thermometer className="w-5 h-5 text-blue-500" />
-          <span>Temperature: {city.temperature}°C (Feels like {city.feels_like}°C)</span>
+          <DeviceThermostatOutlinedIcon />
+          <span>
+            Temperature: {city.temperature}°C (Feels like {city.feels_like}°C)
+          </span>
         </div>
       </div>
     </div>
