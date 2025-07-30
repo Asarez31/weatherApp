@@ -1,11 +1,11 @@
-// src/pages/Home.jsx
 import { useState, useEffect, useContext } from "react";
 import CitySearch from "../components/CitySearch.jsx";
 import CityCard from "../components/CityCard.jsx";
-import CityList from "../components/CityList.jsx"; // Optional: replace with new layout below if needed
+import CityList from "../components/CityList.jsx";
 import { AuthContext } from "../context/AuthContext.jsx";
 import { useNavigate } from "react-router-dom";
-import { Thermometer, Droplet, Wind, Eye, X } from "lucide-react";
+import { Button } from "@mui/material";
+import LogoutIcon from "@mui/icons-material/Logout";
 
 export default function Home() {
   const { token, user, logout } = useContext(AuthContext);
@@ -61,63 +61,45 @@ export default function Home() {
         </h1>
 
         {/* City Search */}
-        <div className="bg-white p-6 rounded-xl shadow-md">
+        <div className="bg-white p-6 rounded-xl shadow-md" >
           <CitySearch onCityAdded={fetchUserCities} />
         </div>
 
         {/* City List */}
-        <div className="bg-white p-6 rounded-xl shadow-md">
+        <div className="bg-white p-6 rounded-xl shadow-md flex justify-center">
           {loading && (
             <p className="text-gray-600 text-center">Loading your cities...</p>
           )}
           {error && <p className="text-red-600 text-center">{error}</p>}
 
-          <ul className="mt-4 space-y-2">
-            {cities.map((city) => (
-              <li
-                key={city.id}
-                className={`cursor-pointer p-3 rounded-md hover:bg-blue-100 transition ${
-                  currentCity?.id === city.id
-                    ? "bg-blue-200 font-semibold"
-                    : "bg-gray-100"
-                }`}
-                onClick={() => handleSelectCity(city)}
-              >
-                {city.name}, {city.region}, {city.country}
-              </li>
-            ))}
-          </ul>
+          <CityList
+            cities={cities}
+            selectedCityId={currentCity?.id}
+            onSelect={handleSelectCity}
+          />
         </div>
 
+
         {/* Weather Display */}
-        <div className="bg-white p-8 rounded-xl shadow-lg text-center">
-          {!currentCity ? (
-            <p className="text-gray-500">No city selected.</p>
+        <div className="bg-white p-8 rounded-xl shadow-lg text-center flex justify-center">
+          {currentCity ? (
+            <CityCard city={currentCity} />
           ) : (
-            <>
-              <h2 className="text-2xl font-bold text-blue-800">
-                {currentCity.name}, {currentCity.country}
-              </h2>
-              <div className="flex flex-col gap-3 text-gray-800 text-sm">
-                <div className="flex items-center gap-2">
-                  <Thermometer className="w-5 h-5 text-blue-500" />
-                  <span>
-                    Temperature: {currentCity.temperature}°C (Feels like{" "}
-                    {currentCity.feels_like}°C)
-                  </span>
-                </div>
-              </div>
-            </>
+            <p className="text-gray-500 flex justify-center">No city selected.</p>
           )}
         </div>
 
         {/* Sign Out Button */}
-        <button
-          onClick={handleSignOut}
-          className="w-full px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
-        >
-          Sign Out
-        </button>
+        <div className="flex justify-center">
+          <Button
+            variant="outlined"
+            color="primary"
+            endIcon={<LogoutIcon />}
+            onClick={handleSignOut}
+          >
+            Sign Out
+          </Button>
+        </div>
       </div>
     </div>
   );
