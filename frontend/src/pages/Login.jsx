@@ -48,8 +48,8 @@ export default function Login() {
   }, [isLoggedIn, navigate]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="max-w-md w-full p-6 bg-white rounded shadow">
+    <div className="flex-grow flex items-center justify-center bg-gray-100 py-8">
+      <div className="w-full max-w-md p-6 bg-white rounded shadow">
         <h2 className="text-2xl font-bold mb-6 text-center">Login</h2>
 
         {error && (
